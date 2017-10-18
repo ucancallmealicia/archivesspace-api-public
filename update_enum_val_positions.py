@@ -25,9 +25,9 @@ if __name__ == '__main__':
     else:
         print('Ooops! something went wrong')
 
-input_file = input('Please enter path to input CSV: '_
+input_file = input('Please enter path to input CSV: ')
 
-file = open(input)file, 'r', encoding='utf-8')
+file = open(input_file, 'r', encoding='utf-8')
 csvin = csv.reader(file)
 next(csvin, None)
 for row in csvin:
