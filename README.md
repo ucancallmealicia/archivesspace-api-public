@@ -31,19 +31,25 @@ __Windows__
 3. Enter `git clone https://github.com/ucancallmealicia/archivesspace-api-public`
 4. Enter `cd archivesspace-api-public`
 5. To work with the scripts interactively, open the Python interpreter `python`
-6. To run a particular script, enter `python script_to_run.py`
+6. To run a particular script, enter `python myscript.py`
 7. Follow prompts in command window
 
 ### Suggested Workflow
 
-Most scripts in this repository utilize CSV inputs to make bulk updates to ArchivesSpace via the API. Documentation for the ArchivesSpace API can be found [here] (http://archivesspace.com). The easiest way to compile the data needed for the updates is by querying the ArchivesSpace database. A repository of queries for use with these scripts can be found [here](http://github.com/ucancallmealicia/archivesspace-sql.com).  Documentation for the ArchivesSpace database can be found [here](http://archivesspace.com).
+These scripts use CSV files as inputs for making bulk metadata updates via the ArchivesSpace API. The easiest way to retrieve the data required for the updates is by querying the ArchivesSpace database. A repository of queries written for use with these scripts can be found [here](http://github.com/ucancallmealicia/archivesspace-sql).  
 
- Here  is a potential process for gathering and modifying data extracted from the ArchivesSpace database, and then pushing those changes to ArchivesSpace via the API. It is highly recommended to first do this work in a test or otherwise non-production instance of ArchivesSpace.
+ Below is a suggested workflow for gathering and re-using data from the ArchivesSpace database. It is highly recommended to first test all work in a non-production instance of ArchivesSpace.
 
 1. Open an SQL file in a MySQL client such as MySQL Workbench or Sequel Pro.
 2. Execute query and export results in CSV format.
-3. The type and extent of changes to be made will 
-4. 
+3. Make a copy of the query export
+4. Process this query output in whatever way suits your needs, making sure to retain the URIs.
+5. Use the modified query output as input for the scripts in this repository
+
+### Resources
+
+* [ArchivesSpace Data Dictionary (Database Documentation)](https://desolate-tundra-60608.herokuapp.com)
+* [ArchivesSpace API Documentation](http://archivesspace.github.io/archivesspace/api/)
 
 ## Repository Contents
 
@@ -62,6 +68,10 @@ Searches for a user-provided list of barcodes and returns data about the associa
 ### create_restrictions.py
 
 Creates machine-actionable conditions governing access or conditions governing use notes.
+
+### delete_notes.py
+
+Deletes notes using a CSV of record URIs and note persistent IDs.
 
 ### delete_records.py
 
@@ -102,9 +112,3 @@ Updates any top-level  record component (resource, archival object, digital obje
 ### update_subrecord_components.py
 
 Updates any record sub-component (date, extent, instance, etc.). To use, ...
-
-
-
-TO-DO
-Update logging
-Add backups for all scripts, mkdir for backup directory
