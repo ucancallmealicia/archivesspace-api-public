@@ -87,7 +87,7 @@ Add file versions to digital object records.
 
 ### link_records.py
 
-Create links between top-level records and subrecords (i.e. link a top container as an instance), top-level records and other top-level records (i.e. link an agent to a resource.
+Create links between top-level records and subrecords (i.e. link a top container as an instance), top-level records and other top-level records (i.e. link an agent to a resource).
 
 ### merge_agents.py
 
@@ -99,11 +99,11 @@ Merges subject records.
 
 ### position_enum_vals.py
 
-Repositions enumeration values. [Query](https://github.com/ucancallmealicia/archivesspace-sql)
+Repositions enumeration values. [Query](https://github.com/ucancallmealicia/archivesspace-sql).
 
 ### update_multipart_notes.py
 
-Updates multipart notes using URIs and persistent IDs extracted from the ArchivesSpace database. [Query](https://github.com/ucancallmealicia/archivesspace-sql)
+Updates multipart notes using URIs and persistent IDs extracted from the ArchivesSpace database. [Query](https://github.com/ucancallmealicia/archivesspace-sql).
 
 ### update_record_components.py
 
@@ -111,4 +111,12 @@ Updates any top-level  record component (resource, archival object, digital obje
 
 ### update_subrecord_components.py
 
-Updates any record sub-component (date, extent, instance, etc.). To use, ...
+Updates any subrecord (date, extent, instance, etc.). To use, ...
+
+### update_subsubrecord_components.py
+
+Updates any subrecord‘s subrecord (i.e. subcontainers within an instance record).
+
+### asnake_implement.py
+
+Test script to implement create and update functions using ArchivesSnake.

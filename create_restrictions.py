@@ -40,26 +40,24 @@ def writetxt(file, jsonname):
         if key == 'error':
             file.write('%s:%s\n' % (key, value) + '\n')
 
-def replace_note_by_id():
-    #replaces a note's content in ArchivesSpace using a persistent ID
+def create_rights_restrictions():
     values = login()
     csvfile = opencsv()
     txtfile = opentxt()
     for row in csvfile:
         record_uri = row[0]
         persistent_id = row[1]
-        note_text = row[2]
-        resource_json = requests.get(values[0] + record_uri, headers=values[1]).json()
-        for note in resource_json['notes']:
-            if note['jsonmodel_type'] == 'note_multipart':
-                if note['persistent_id'] == persistent_id:
-                    note['subnotes'][0]['content'] = note_text
-            elif note['jsonmodel_type'] == 'note_singlepart':
-                if note['persistent_id'] == persistent_id:
-                    note['content'] = [note_text]
-        resource_data = json.dumps(resource_json)
-        resource_update = requests.post(values[0] + record_uri, headers=values[1], data=resource_data).json()
-        writetxt(txtfile, resource_update)
-        print(resource_update)
-
-replace_note_by_id()
+        begin = row[2]
+        end = row[3]
+        local_type = row[4]
+        note_type = row[5]
+        record_json = requests.get(values[0] + record_uri, headers=values[1]).json()
+        new_restriction = {'begin': begin, 'end': end, 'local_access_restriction_type': [local_type],
+                           'restriction_note_type': note_type, 'jsonmodel_type': 'rights_restriction'}
+        for note in record_json['notes']:
+            if note['persistent_id'] == persistent_id:
+                note['rights_restriction'] = new_restriction
+        record_data = json.dumps(record_json)
+        record_update = requests.post(values[0] + record_uri, headers=values[1], data=record_data).json()
+        writetxt(txtfile, record_update)
+        print(record_update)
