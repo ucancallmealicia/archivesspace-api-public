@@ -109,6 +109,10 @@ Updates multipart notes using URIs and persistent IDs extracted from the Archive
 
 Updates any top-level  record component (resource, archival object, digital object, etc.). To use, ...
 
+### update_record_publish.py
+
+Publishes or unpublishes a set of top-level records.
+
 ### update_subrecord_components.py
 
 Updates any subrecord (date, extent, instance, etc.). To use, ...
